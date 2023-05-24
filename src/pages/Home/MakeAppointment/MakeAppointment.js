@@ -4,7 +4,7 @@ import bgAppointment from "../../../assets/images/appointment.png";
 
 const MakeAppointment = () => {
   return (
-    <section className="mt-64" style={{ background: `url(${bgAppointment})` }}>
+    <section className="my-20" style={{ background: `url(${bgAppointment})` }}>
       <div className="hero h-[512px]">
         <div className="hero-content flex-col lg:flex-row">
           <img
