@@ -5,7 +5,11 @@ const Banner = () => {
   return (
     <div className="hero my-8 ">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <img src={bannerImage} className="w-1/2 rounded-lg " alt="banner-img" />
+        <img
+          src={bannerImage}
+          className="lg:w-1/2 rounded-lg "
+          alt="banner-img"
+        />
         <div>
           <h1 className="text-5xl font-bold">Your New Smile Starts Here!</h1>
           <p className="py-6">
