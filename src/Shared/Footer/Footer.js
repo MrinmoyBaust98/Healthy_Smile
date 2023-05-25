@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className=" bg-neutral-100  p-4 ">
+    <section className=" my-4 bg-neutral-100  p-4 ">
       <section className="flex justify-around ">
         <div className="my-6">
           <h1 className="text-xl font-bold text-accent mb-4">SERVICES</h1>
@@ -11,8 +11,10 @@ const Footer = () => {
           <p>Monthly Checkup</p>
           <p>Weekly Checkup</p>
         </div>
-        <div className="my-6">
-          <h1 className="text-xl font-bold text-accent mb-4">ORAL HEALTH</h1>
+        <div className="my-6 hidden lg:block">
+          <h1 className=" lg:text-xl font-bold text-accent mb-4">
+            ORAL HEALTH
+          </h1>
           <p>Fluoride Treatment</p>
           <p>Cavity Filling</p>
           <p>Teath Whitening</p>
