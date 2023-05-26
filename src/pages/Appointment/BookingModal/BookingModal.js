@@ -18,10 +18,40 @@ const BookingModal = ({ treatmentName }) => {
             ✕
           </label>
           <h3 className="text-lg font-bold">{name}</h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
+
+          <form className=" mt-8 grid grid-cols-1 gap-4">
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full "
+            />
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full "
+            />
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full "
+            />
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full "
+            />
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full "
+            />
+            <br />
+            <input
+              type="button"
+              value="Submit"
+              className="w-full btn btn-accent"
+            />
+          </form>
         </div>
       </div>
     </>
