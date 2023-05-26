@@ -1,7 +1,8 @@
+import { format } from "date-fns";
 import React from "react";
 
-const BookingModal = ({ treatmentName }) => {
-  const { name } = treatmentName;
+const BookingModal = ({ treatmentName, selectedDate }) => {
+  const { name, slots } = treatmentName; //Means Appointment options
   return (
     <>
       <input
@@ -13,7 +14,7 @@ const BookingModal = ({ treatmentName }) => {
         <div className="modal-box relative">
           <label
             htmlFor="bookingAppointmentModal"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
+            className="btn btn-sm btn-accent btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
@@ -22,29 +23,31 @@ const BookingModal = ({ treatmentName }) => {
           <form className=" mt-8 grid grid-cols-1 gap-4">
             <input
               type="text"
-              placeholder="Type here"
+              disabled
+              value={format(selectedDate, "PP")}
+              className="input input-bordered w-full "
+            />
+            <select className="select select-bordered w-full ">
+              {slots.map((slot) => (
+                <option value={slot}>{slot}</option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="Full Name"
               className="input input-bordered w-full "
             />
             <input
               type="text"
-              placeholder="Type here"
+              placeholder="Email"
               className="input input-bordered w-full "
             />
             <input
-              type="text"
-              placeholder="Type here"
+              type="number"
+              placeholder="Phon Number"
               className="input input-bordered w-full "
             />
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full "
-            />
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full "
-            />
+
             <br />
             <input
               type="button"
