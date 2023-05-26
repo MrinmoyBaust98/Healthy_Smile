@@ -31,6 +31,7 @@ const AvailableAppointment = ({ selectedDate }) => {
       {treatmentName && (
         <BookingModal
           treatmentName={treatmentName}
+          setTreatmentName={setTreatmentName}
           selectedDate={selectedDate}
         />
       )}
