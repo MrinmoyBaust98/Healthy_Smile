@@ -3,7 +3,13 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  // From Submit Button Handle. When Submit button data will get here
   const handleFromSubmit = (data) => {
     console.log(data);
   };
@@ -19,9 +25,17 @@ const Login = () => {
             </label>
             <input
               type="email"
-              {...register("Email")}
+              {...register("email", { required: "Email Address is required" })}
               className="input input-bordered w-full "
             />
+
+            {/* when Emil is not given this error will show */}
+
+            {errors.email && (
+              <p className="text-red-500" role="alert">
+                {errors.email?.message}
+              </p>
+            )}
           </div>
           <div className=" my-3 form-control w-full ">
             <label className="label">
@@ -29,9 +43,22 @@ const Login = () => {
             </label>
             <input
               type="password"
-              {...register("password")}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password Should be 6 Charecter",
+                },
+              })}
               className="input input-bordered w-full "
             />
+
+            {/* when Password is not given This error will show */}
+            {errors.password && (
+              <p className="text-red-500" role="alert">
+                {errors.password?.message}
+              </p>
+            )}
             <label className="label">
               <span className="label-text">Forgot Password ?</span>
             </label>
