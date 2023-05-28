@@ -1,7 +1,8 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import app from "../firebase/Firebase.config";
@@ -20,6 +21,16 @@ const AuthProvider = ({ children }) => {
   // ar amader banano function take handleFrom function ea call kore dibo
   // And Our Function call beside HandleSubmit Function
 
+  // OnAuthSatateChange
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const signUpUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -28,7 +39,7 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const authInfo = { signUpUser, loginUser };
+  const authInfo = { signUpUser, loginUser, user };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
