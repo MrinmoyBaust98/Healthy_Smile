@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
   const {
@@ -9,9 +10,21 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  //AuthContex
+  const { loginUser } = useContext(AuthContext);
+
   // From Submit Button Handle. When Submit button data will get here
   const handleFromSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+
+    loginUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className=" h-[680px]  flex justify-center items-center">
