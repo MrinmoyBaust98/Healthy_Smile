@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import app from "../firebase/Firebase.config";
+
+// To auth provider we need authcontext and auth alltime
 export const AuthContext = createContext();
 const auth = getAuth(app);
 

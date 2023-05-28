@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -10,12 +10,16 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const [loginError, setLoginError] = useState("");
+
   //AuthContex
   const { loginUser } = useContext(AuthContext);
 
   // From Submit Button Handle. When Submit button data will get here
   const handleFromSubmit = (data) => {
     // console.log(data);
+    // Jodi Kono error thake tahole submit er jaygay reset kore felbo
+    setLoginError("");
 
     loginUser(data.email, data.password)
       .then((result) => {
@@ -24,6 +28,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
+        setLoginError(error.message);
       });
   };
   return (
@@ -77,6 +82,10 @@ const Login = () => {
             </label>
           </div>
 
+          {/* password wrong hole je error dekhabe  */}
+          <div>
+            {loginError && <p className="text-red-600"> {loginError} </p>}
+          </div>
           <input
             className=" mt-4 btn btn-accent w-full text-xl font-normal text-white "
             type="submit"
