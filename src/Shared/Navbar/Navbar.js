@@ -4,7 +4,17 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  //handle Logout
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const manuItems = (
     <React.Fragment>
       <li>
@@ -25,7 +35,7 @@ const Navbar = () => {
       {/* jodi login thake ba na thake  */}
       {user?.uid ? (
         <li>
-          <NavLink to="/logout">LogOut </NavLink>
+          <button onClick={handleLogOut}>LogOut </button>
         </li>
       ) : (
         <li>
