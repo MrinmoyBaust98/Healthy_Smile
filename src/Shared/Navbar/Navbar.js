@@ -26,17 +26,20 @@ const Navbar = () => {
       <li>
         <NavLink to="/appointment">Appointment</NavLink>
       </li>
-      <li>
-        <NavLink to="/reviews">Reviews</NavLink>
-      </li>
+
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
       {/* jodi login thake ba na thake  */}
       {user?.uid ? (
-        <li>
-          <button onClick={handleLogOut}>LogOut </button>
-        </li>
+        <>
+          <li>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+          <li>
+            <button onClick={handleLogOut}>LogOut </button>
+          </li>
+        </>
       ) : (
         <li>
           <NavLink to="/login">Login </NavLink>

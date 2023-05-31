@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const SignUp = () => {
   const {
@@ -9,20 +10,34 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  // Error handle state
+  const [signUpError, setSignUpError] = useState("");
 
-  const { signUpUser } = useContext(AuthContext);
+  const { signUpUser, updateUser } = useContext(AuthContext);
 
   // From Handle Sunmit buttom
   const handleSignupFromSubmit = (data) => {
+    // Error ke cear kore rakbo new signup er belay
+    setSignUpError("");
     // console.log(data);
     signUpUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        // Toast added .when singnup successfull it shows
+        toast("Sign Up Completed Successfully");
+        // display user name part
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {})
+          .catch((err) => console.log(err));
+        // display user name part ends here
       })
       .catch((error) => {
         console.log(error);
-        // ..
+        setSignUpError(error.message);
       });
   };
 
@@ -96,6 +111,8 @@ const SignUp = () => {
             type="submit"
             value="Sign Up"
           />
+          {/* jodi ager signuop thake same name or email ea then error will show */}
+          {signUpError && <p className="text-red-600">{signUpError}</p>}
         </form>
         <p className=" my-3 text-center">
           Already Have an Account?
