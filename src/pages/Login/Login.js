@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
@@ -15,6 +15,11 @@ const Login = () => {
   //AuthContex
   const { loginUser } = useContext(AuthContext);
 
+  // For private path
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
   // From Submit Button Handle. When Submit button data will get here
   const handleFromSubmit = (data) => {
     // console.log(data);
@@ -25,6 +30,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        // restricted path back previous state
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
